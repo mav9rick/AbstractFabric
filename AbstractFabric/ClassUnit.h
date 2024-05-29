@@ -25,5 +25,48 @@ private:
     using Fields = vector< shared_ptr< Unit > >;
     vector< Fields > m_fields;
 };
+class JavaClass : public Unit
+{
+public:
+    enum AccessModifier
+    {
+        PUBLIC,
+        PROTECTED,
+        PRIVATE,
+        DEFAULT
+    };
+    static const vector< string > ACCESS_MODIFIERS;
+public:
+    explicit JavaClass( const string& name );
+    void add( const shared_ptr< Unit >& unit, Flags flags );
+    string compile( unsigned int level = 0 ) const;
+private:
+    string m_name;
+    using Fields = vector< shared_ptr< Unit > >;
+    vector< Fields > m_fields;
+};
+class CSharpClass : public Unit
+{
+public:
+    enum AccessModifier
+    {
+        PUBLIC,
+        PROTECTED,
+        PRIVATE,
+        INTERNAL,
+        PROTECTED_INTERNAL,
+        PRIVATE_PROTECTED,
+        FILE
+    };
+    static const vector< string > ACCESS_MODIFIERS;
+public:
+    explicit CSharpClass( const string& name );
+    void add( const shared_ptr< Unit >& unit, Flags flags );
+    string compile( unsigned int level = 0 ) const;
+private:
+    string m_name;
+    using Fields = vector< shared_ptr< Unit > >;
+    vector< Fields > m_fields;
+};
 
 #endif // CLASSUNIT_H
