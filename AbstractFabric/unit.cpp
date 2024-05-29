@@ -14,16 +14,5 @@ void Unit::add( const shared_ptr< Unit >& , Flags )
 {
     throw runtime_error( "Not supported" );
 }
-PrintOperatorUnit::PrintOperatorUnit( const string& text ) : m_text( text )
-{
 
-}
-void PrintOperatorUnit::add(const shared_ptr<Unit>& /* unit */, Flags /* flags */)
-{
-
-}
-string PrintOperatorUnit::compile( unsigned int level ) const
-{
-    return generateShift( level ) + "printf( \"" + m_text + "\" );\n";
-}
 

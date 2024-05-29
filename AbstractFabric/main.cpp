@@ -1,5 +1,6 @@
 #include "unit.h"
 #include "MethodUnit.h"
+#include "PrintOperatorUnit.h"
 #include "ClassUnit.h"
 #include <iostream>
 #include <QApplication>
