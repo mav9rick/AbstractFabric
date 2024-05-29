@@ -25,7 +25,26 @@ private:
     Flags m_flags;
     vector< shared_ptr< Unit > > m_body;
 };
-class JavaMethod : public Unit
+class CplusplusMethod : public MethodUnit
+{
+public:
+    enum Modifier
+    {
+        STATIC = 1,
+        CONST = 2,
+        VIRTUAL = 3
+    };
+public:
+    CplusplusMethod( const string& name, const string& returnType, Flags flags );
+    void add( const shared_ptr< Unit >& unit, Flags flags = 0 );
+    string compile( unsigned int level = 0 ) const;
+private:
+    string m_name;
+    string m_returnType;
+    Flags m_flags;
+    vector< shared_ptr< Unit > > m_body;
+};
+class JavaMethod : public MethodUnit
 {
 public:
     enum Modifier
@@ -50,7 +69,7 @@ private:
     Flags m_flags;
     vector< shared_ptr< Unit > > m_body;
 };
-class CSharpMethod : public Unit
+class CSharpMethod : public MethodUnit
 {
 public:
     enum Modifier

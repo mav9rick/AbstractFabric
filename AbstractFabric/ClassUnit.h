@@ -25,7 +25,26 @@ private:
     using Fields = vector< shared_ptr< Unit > >;
     vector< Fields > m_fields;
 };
-class JavaClass : public Unit
+class СplusplusClass : public ClassUnit
+{
+public:
+    enum AccessModifier
+    {
+        PUBLIC,
+        PROTECTED,
+        PRIVATE
+    };
+    static const vector< string > ACCESS_MODIFIERS;
+public:
+    explicit СplusplusClass( const string& name );
+    void add( const shared_ptr< Unit >& unit, Flags flags );
+    string compile( unsigned int level = 0 ) const;
+private:
+    string m_name;
+    using Fields = vector< shared_ptr< Unit > >;
+    vector< Fields > m_fields;
+};
+class JavaClass : public ClassUnit
 {
 public:
     enum AccessModifier
@@ -45,7 +64,7 @@ private:
     using Fields = vector< shared_ptr< Unit > >;
     vector< Fields > m_fields;
 };
-class CSharpClass : public Unit
+class CSharpClass : public ClassUnit
 {
 public:
     enum AccessModifier

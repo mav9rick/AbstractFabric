@@ -16,5 +16,4 @@ public:
 protected:
     virtual string generateShift( unsigned int level ) const;
 };
-
 #endif // UNIT_H
