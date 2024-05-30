@@ -44,6 +44,13 @@ public:
         CONST = 2,
         VIRTUAL = 3
     };
+    enum AccessModifier
+    {
+        PUBLIC = 1,
+        PROTECTED = 2,
+        PRIVATE = 3,
+        DEFAULT = 4
+    };
 public:
     CplusplusMethod( const string& name, const string& returnType, Flags flags ):MethodUnit(name,  returnType,  flags){};
     string compile( unsigned int level = 0 ) const;

@@ -17,10 +17,10 @@ public:
     };
     static const vector< string > ACCESS_MODIFIERS;
 public:
-    explicit ClassUnit( const string& name );
+    explicit ClassUnit( const string& name , Flags flags = PRIVATE);
     void add( const shared_ptr< Unit >& unit, Flags flags );
     string compile( unsigned int level = 0 ) const;
-private:
+    Flags m_flags;
     string m_name;
     using Fields = vector< shared_ptr< Unit > >;
     vector< Fields > m_fields;
@@ -36,13 +36,9 @@ public:
     };
     static const vector< string > ACCESS_MODIFIERS;
 public:
-    explicit СplusplusClass( const string& name );
+    explicit СplusplusClass( const string& name , Flags flags = PRIVATE);
     void add( const shared_ptr< Unit >& unit, Flags flags );
     string compile( unsigned int level = 0 ) const;
-private:
-    string m_name;
-    using Fields = vector< shared_ptr< Unit > >;
-    vector< Fields > m_fields;
 };
 class JavaClass : public ClassUnit
 {
@@ -56,13 +52,9 @@ public:
     };
     static const vector< string > ACCESS_MODIFIERS;
 public:
-    explicit JavaClass( const string& name );
+    explicit JavaClass( const string& name , Flags flags = PRIVATE);
     void add( const shared_ptr< Unit >& unit, Flags flags );
     string compile( unsigned int level = 0 ) const;
-private:
-    string m_name;
-    using Fields = vector< shared_ptr< Unit > >;
-    vector< Fields > m_fields;
 };
 class CSharpClass : public ClassUnit
 {
@@ -79,13 +71,9 @@ public:
     };
     static const vector< string > ACCESS_MODIFIERS;
 public:
-    explicit CSharpClass( const string& name );
-    void add( const shared_ptr< Unit >& unit, Flags flags );
+    explicit CSharpClass( const string& name ,Flags flags = PRIVATE);
+    void add( const shared_ptr< Unit >& unit, Flags flags);
     string compile( unsigned int level = 0 ) const;
-private:
-    string m_name;
-    using Fields = vector< shared_ptr< Unit > >;
-    vector< Fields > m_fields;
 };
 
 #endif // CLASSUNIT_H

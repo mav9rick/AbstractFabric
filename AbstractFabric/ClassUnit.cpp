@@ -1,7 +1,7 @@
 #include "ClassUnit.h"
 
 const vector< string > ClassUnit::ACCESS_MODIFIERS = { "public", "protected", "private" };
-ClassUnit::ClassUnit( const string& name ): m_name( name )
+ClassUnit::ClassUnit( const string& name, Flags flags ): m_flags(flags), m_name( name )
 {
     m_fields.resize( ACCESS_MODIFIERS.size() );
 }
@@ -37,7 +37,7 @@ string ClassUnit::compile( unsigned int level ) const
 /*-------------------------------------------------------------------------------------------------*/
 
 const vector< string > СplusplusClass::ACCESS_MODIFIERS = { "public", "protected", "private" };
-СplusplusClass::СplusplusClass( const string& name ):  ClassUnit(name) , m_name( name )
+СplusplusClass::СplusplusClass( const string& name, Flags flags ):  ClassUnit(name,flags)
 {
     m_fields.resize( ACCESS_MODIFIERS.size() );
 }
@@ -73,7 +73,7 @@ string СplusplusClass::compile( unsigned int level ) const
 /*-----------------------------------------------------------------------------------------------------*/
 
 const vector< string > JavaClass::ACCESS_MODIFIERS = { "public", "protected", "private" , "default" };
-JavaClass::JavaClass( const string& name ): ClassUnit(name), m_name( name )
+JavaClass::JavaClass( const string& name,Flags flags): ClassUnit(name,flags)
 {
     m_fields.resize( ACCESS_MODIFIERS.size() );
 }
@@ -88,7 +88,27 @@ void JavaClass::add( const shared_ptr< Unit >& unit, Flags flags )
 }
 string JavaClass::compile( unsigned int level ) const
 {
-    string result = generateShift( level ) + "class " + m_name + " {\n";
+    string result = generateShift(level);
+
+    // Добавляем модификатор доступа для класса
+    if (m_flags & PUBLIC)
+    {
+        result += "public ";
+    }
+    else if (m_flags & PROTECTED)
+    {
+        result += "protected ";
+    }
+    else if (m_flags & PRIVATE)
+    {
+        result += "private ";
+    }
+    else if (m_flags & DEFAULT)
+    {
+        result += "default ";
+    }
+
+    result += "class " + m_name + " {\n";
 
     for( size_t i = 0; i < ACCESS_MODIFIERS.size(); ++i )
     {
@@ -111,7 +131,7 @@ string JavaClass::compile( unsigned int level ) const
 
 const vector< string > CSharpClass::ACCESS_MODIFIERS = { "public", "protected", "private" , "internal"
                                                         , "protected_internal" , "private_protected", "file" };
-CSharpClass::CSharpClass( const string& name ): ClassUnit(name), m_name( name )
+CSharpClass::CSharpClass( const string& name ,Flags flags): ClassUnit(name,flags)
 {
     m_fields.resize( ACCESS_MODIFIERS.size() );
 }

@@ -1,6 +1,4 @@
 #include "MethodUnit.h"
-#include "qdebug.h"
-#include "qlogging.h"
 
 MethodUnit::MethodUnit( const string& name, const string& returnType, Flags flags ):m_name( name ), m_returnType( returnType ), m_flags( flags )
 {
@@ -43,7 +41,6 @@ string CplusplusMethod::compile( unsigned int level ) const
     string result = generateShift( level );
     if( m_flags & STATIC )
     {
-        cout << "m_returnTypeCpupu :" << m_returnType ;
         result += "static ";
     }
     else if( m_flags & VIRTUAL )

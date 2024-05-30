@@ -8,7 +8,7 @@
 using namespace std;
 string generateProgram(Fabric& factory)
 {
-    shared_ptr<ClassUnit> myClass = factory.createClass( "MyClass" );
+    shared_ptr<ClassUnit> myClass = factory.createClass("MyClass" , ClassUnit::PUBLIC);
     myClass->add(factory.createMethod( "testFunc1", "void", 0 ),ClassUnit::PUBLIC);
     myClass->add(factory.createMethod( "testFunc2", "void", MethodUnit::STATIC | MethodUnit::PRIVATE ),ClassUnit::PRIVATE);
     myClass->add(factory.createMethod( "testFunc3", "void", MethodUnit::VIRTUAL | MethodUnit::CONST ),ClassUnit::PUBLIC);
