@@ -9,7 +9,6 @@ class Unit
 {
 public:
     using Flags = unsigned int;
-public:
     virtual ~Unit() = default;
     virtual void add( const shared_ptr< Unit >& , Flags );
     virtual string compile( unsigned int level = 0 ) const = 0;

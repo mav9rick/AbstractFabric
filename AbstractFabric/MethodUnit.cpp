@@ -1,4 +1,6 @@
 #include "MethodUnit.h"
+#include "qdebug.h"
+#include "qlogging.h"
 
 MethodUnit::MethodUnit( const string& name, const string& returnType, Flags flags ):m_name( name ), m_returnType( returnType ), m_flags( flags )
 {
@@ -36,19 +38,12 @@ string MethodUnit::compile( unsigned int level ) const
 
 /*-----------------------------------------------------------------------------------------------------*/
 
-CplusplusMethod::CplusplusMethod( const string& name, const string& returnType, Flags flags ):m_name( name ), m_returnType( returnType ), m_flags( flags )
-{
-
-}
-void CplusplusMethod::add( const shared_ptr< Unit >& unit, Flags flags )
-{
-    m_body.push_back( unit );
-}
 string CplusplusMethod::compile( unsigned int level ) const
 {
     string result = generateShift( level );
     if( m_flags & STATIC )
     {
+        cout << "m_returnTypeCpupu :" << m_returnType ;
         result += "static ";
     }
     else if( m_flags & VIRTUAL )
@@ -72,18 +67,10 @@ string CplusplusMethod::compile( unsigned int level ) const
 
 /*-----------------------------------------------------------------------------------------------------*/
 
-JavaMethod::JavaMethod( const string& name, const string& returnType, Flags flags ):m_name( name ), m_returnType( returnType ), m_flags( flags )
-{
-
-}
-void JavaMethod::add( const shared_ptr< Unit >& unit, Flags flags )
-{
-    m_body.push_back( unit );
-}
 string JavaMethod::compile( unsigned int level ) const
 {
     string result = generateShift( level );
-    if (m_flags & PUBLIC)
+    /*if (m_flags & PUBLIC)
     {
         result += "public ";
     }
@@ -94,8 +81,8 @@ string JavaMethod::compile( unsigned int level ) const
     else if (m_flags & PRIVATE)
     {
         result += "private ";
-    }
-    else if (m_flags & DEFAULT)
+    }*/
+    if (m_flags & DEFAULT)
     {
         result += "default ";
     }
@@ -103,7 +90,7 @@ string JavaMethod::compile( unsigned int level ) const
     {
         result += "static ";
     }
-    else if( m_flags & FINAL )
+    if( m_flags & FINAL )
     {
         result += "final ";
     }
@@ -120,14 +107,6 @@ string JavaMethod::compile( unsigned int level ) const
 
 /*-----------------------------------------------------------------------------------------------------*/
 
-CSharpMethod::CSharpMethod( const string& name, const string& returnType, Flags flags ):m_name( name ), m_returnType( returnType ), m_flags( flags )
-{
-
-}
-void CSharpMethod::add( const shared_ptr< Unit >& unit, Flags flags )
-{
-    m_body.push_back( unit );
-}
 string CSharpMethod::compile( unsigned int level ) const
 {
     string result = generateShift( level );

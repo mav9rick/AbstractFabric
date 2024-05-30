@@ -15,15 +15,25 @@ public:
         CONST = 2,
         VIRTUAL = 3
     };
+    enum AccessModifier
+    {
+        PUBLIC,
+        PROTECTED,
+        PRIVATE,
+        INTERNAL,
+        PROTECTED_INTERNAL,
+        PRIVATE_PROTECTED,
+        FILE
+    };
 public:
     MethodUnit( const string& name, const string& returnType, Flags flags );
     void add( const shared_ptr< Unit >& unit, Flags flags = 0 );
     string compile( unsigned int level = 0 ) const;
-private:
     string m_name;
     string m_returnType;
     Flags m_flags;
     vector< shared_ptr< Unit > > m_body;
+private:
 };
 class CplusplusMethod : public MethodUnit
 {
@@ -35,14 +45,8 @@ public:
         VIRTUAL = 3
     };
 public:
-    CplusplusMethod( const string& name, const string& returnType, Flags flags );
-    void add( const shared_ptr< Unit >& unit, Flags flags = 0 );
+    CplusplusMethod( const string& name, const string& returnType, Flags flags ):MethodUnit(name,  returnType,  flags){};
     string compile( unsigned int level = 0 ) const;
-private:
-    string m_name;
-    string m_returnType;
-    Flags m_flags;
-    vector< shared_ptr< Unit > > m_body;
 };
 class JavaMethod : public MethodUnit
 {
@@ -60,14 +64,8 @@ public:
         DEFAULT = 4
     };
 public:
-    JavaMethod( const string& name, const string& returnType, Flags flags );
-    void add( const shared_ptr< Unit >& unit, Flags flags = 0 );
+    JavaMethod( const string& name, const string& returnType, Flags flags ):MethodUnit(name,  returnType,  flags){};
     string compile( unsigned int level = 0 ) const;
-private:
-    string m_name;
-    string m_returnType;
-    Flags m_flags;
-    vector< shared_ptr< Unit > > m_body;
 };
 class CSharpMethod : public MethodUnit
 {
@@ -78,24 +76,9 @@ public:
         OVERRIDE = 2,
         VIRTUAL = 3
     };
-    enum AccessModifier
-    {
-        PUBLIC,
-        PROTECTED,
-        PRIVATE,
-        INTERNAL,
-        PROTECTED_INTERNAL,
-        PRIVATE_PROTECTED,
-        FILE
-    };
+
 public:
-    CSharpMethod ( const string& name, const string& returnType, Flags flags );
-    void add( const shared_ptr< Unit >& unit, Flags flags = 0 );
+    CSharpMethod ( const string& name, const string& returnType, Flags flags ):MethodUnit(name,  returnType,  flags){};
     string compile( unsigned int level = 0 ) const;
-private:
-    string m_name;
-    string m_returnType;
-    Flags m_flags;
-    vector< shared_ptr< Unit > > m_body;
 };
 #endif // METHODUNIT_H

@@ -37,7 +37,7 @@ string ClassUnit::compile( unsigned int level ) const
 /*-------------------------------------------------------------------------------------------------*/
 
 const vector< string > СplusplusClass::ACCESS_MODIFIERS = { "public", "protected", "private" };
-СplusplusClass::СplusplusClass( const string& name ): m_name( name )
+СplusplusClass::СplusplusClass( const string& name ):  ClassUnit(name) , m_name( name )
 {
     m_fields.resize( ACCESS_MODIFIERS.size() );
 }
@@ -73,7 +73,7 @@ string СplusplusClass::compile( unsigned int level ) const
 /*-----------------------------------------------------------------------------------------------------*/
 
 const vector< string > JavaClass::ACCESS_MODIFIERS = { "public", "protected", "private" , "default" };
-JavaClass::JavaClass( const string& name ): m_name( name )
+JavaClass::JavaClass( const string& name ): ClassUnit(name), m_name( name )
 {
     m_fields.resize( ACCESS_MODIFIERS.size() );
 }
@@ -96,10 +96,9 @@ string JavaClass::compile( unsigned int level ) const
         {
             continue;
         }
-        result += ACCESS_MODIFIERS[ i ] + ":\n";
         for( const auto& f : m_fields[ i ] )
         {
-
+            result += ACCESS_MODIFIERS[ i ];
             result += f->compile( level + 1 );
         }
         result += "\n";
@@ -112,7 +111,7 @@ string JavaClass::compile( unsigned int level ) const
 
 const vector< string > CSharpClass::ACCESS_MODIFIERS = { "public", "protected", "private" , "internal"
                                                         , "protected_internal" , "private_protected", "file" };
-CSharpClass::CSharpClass( const string& name ): m_name( name )
+CSharpClass::CSharpClass( const string& name ): ClassUnit(name), m_name( name )
 {
     m_fields.resize( ACCESS_MODIFIERS.size() );
 }
