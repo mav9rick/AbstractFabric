@@ -13,13 +13,18 @@ public:
     {
         PUBLIC,
         PROTECTED,
-        PRIVATE
+        PRIVATE,
+        DEFAULT,
+        INTERNAL,
+        PROTECTED_INTERNAL,
+        PRIVATE_PROTECTED,
+        FILE
     };
     static const vector< string > ACCESS_MODIFIERS;
 public:
     explicit ClassUnit( const string& name , Flags flags = PRIVATE);
-    void add( const shared_ptr< Unit >& unit, Flags flags );
-    string compile( unsigned int level = 0 ) const;
+    virtual void add( const shared_ptr< Unit >& unit, Flags flags ) = 0;
+    virtual string compile( unsigned int level = 0 ) const = 0;
     Flags m_flags;
     string m_name;
     using Fields = vector< shared_ptr< Unit > >;
@@ -28,12 +33,6 @@ public:
 class СplusplusClass : public ClassUnit
 {
 public:
-    enum AccessModifier
-    {
-        PUBLIC,
-        PROTECTED,
-        PRIVATE
-    };
     static const vector< string > ACCESS_MODIFIERS;
 public:
     explicit СplusplusClass( const string& name , Flags flags = PRIVATE);
@@ -43,13 +42,6 @@ public:
 class JavaClass : public ClassUnit
 {
 public:
-    enum AccessModifier
-    {
-        PUBLIC,
-        PROTECTED,
-        PRIVATE,
-        DEFAULT
-    };
     static const vector< string > ACCESS_MODIFIERS;
 public:
     explicit JavaClass( const string& name , Flags flags = PRIVATE);
@@ -59,16 +51,6 @@ public:
 class CSharpClass : public ClassUnit
 {
 public:
-    enum AccessModifier
-    {
-        PUBLIC,
-        PROTECTED,
-        PRIVATE,
-        INTERNAL,
-        PROTECTED_INTERNAL,
-        PRIVATE_PROTECTED,
-        FILE
-    };
     static const vector< string > ACCESS_MODIFIERS;
 public:
     explicit CSharpClass( const string& name ,Flags flags = PRIVATE);
