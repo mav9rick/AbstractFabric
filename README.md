@@ -8,4 +8,4 @@
 - MethodUnit: продукт типа метод, наследники: JavaMethod, CsharpMethod, CplusplusMethod.
 - PrintOperationUnit: продукт типа оператор печати, наследники: JavaPrintOperator, CsharpPrintOperator, CplusPrintOperator.
 ## UML-диаграмма
-![Иллюстрация к проекту](https://github.com/mav9rick/Qt-lab-1.2/raw//main/AbstractFabricUML.png)
+![Иллюстрация к проекту](https://github.com/mav9rick/AbstractFabric/raw//main/AbstractFabricUML.png)
