@@ -19,13 +19,11 @@ string generateProgram(Fabric& factory)
 }
 int main()
 {
-    Fabric* factory = nullptr;
-    factory = new JavaFabric;
+    unique_ptr<Fabric> factory = make_unique<JavaFabric>();
     cout << generateProgram(*factory) << endl;
-    factory = new CsharpFabric;
+    factory = make_unique<CsharpFabric>();
     cout << generateProgram(*factory) << endl;
-    factory = new CplusplusFabric;
+    factory = make_unique<CplusplusFabric>();
     cout << generateProgram(*factory) << endl;
-    delete factory;
     return 0;
 }
