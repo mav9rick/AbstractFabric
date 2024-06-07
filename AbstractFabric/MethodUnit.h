@@ -32,6 +32,7 @@ public:
     MethodUnit( const string& name, const string& returnType, Flags flags );
     void add( const shared_ptr< Unit >& unit, Flags flags = 0 );
     virtual string compile( unsigned int level = 0 ) const = 0;
+protected:
     string m_name;
     string m_returnType;
     Flags m_flags;

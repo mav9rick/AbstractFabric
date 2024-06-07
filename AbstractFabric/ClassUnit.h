@@ -25,6 +25,7 @@ public:
     explicit ClassUnit( const string& name , Flags flags = PRIVATE);
     virtual void add( const shared_ptr< Unit >& unit, Flags flags ) = 0;
     virtual string compile( unsigned int level = 0 ) const = 0;
+protected:
     Flags m_flags;
     string m_name;
     using Fields = vector< shared_ptr< Unit > >;

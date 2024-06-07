@@ -23,7 +23,7 @@ public:
     }
     shared_ptr<MethodUnit> createMethod(const string& name, const string& returnType, unsigned int flags) override
     {
-        return make_shared<JavaMethod>(name, returnType, flags);
+        return make_shared<JavaMethod> (name, returnType, flags);
     }
     shared_ptr<PrintOperatorUnit> createPrintOperatorUnit(const string& text) override
     {
